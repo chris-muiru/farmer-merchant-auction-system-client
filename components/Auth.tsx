@@ -3,7 +3,7 @@ import React from "react"
 import Image from "next/image"
 import { NextPage } from "next/types"
 interface Props {
-	children: any
+	children: JSX.Element
 }
 const Auth: NextPage<Props> = ({ children }) => {
 	return (
