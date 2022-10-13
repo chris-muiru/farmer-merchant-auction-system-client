@@ -1,11 +1,11 @@
 import { NextPage } from "next"
 import Image from "next/image"
 import Link from "next/link"
-import Auth from "../../components/Auth"
+import Auth from "../../components/Auth/Auth"
 
 import { NextPageWithLayout } from "pages/_app"
 import { ReactElement } from "react"
-import Layout from "components/Layout"
+import Layout from "components/Home/Layout"
 const SignIn: NextPageWithLayout = () => {
 	return (
 		<Auth>
