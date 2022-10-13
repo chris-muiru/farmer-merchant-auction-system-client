@@ -14,7 +14,7 @@ import { BsFillHouseFill } from "react-icons/bs"
 import Link from "next/link"
 import { useState, useRef } from "react"
 const NavBar = (): JSX.Element => {
-	const [categoryDivIsBlock, setCategoryDivIsBlock] = useState(true)
+	const [categoryDivIsBlock, setCategoryDivIsBlock] = useState(false)
 	const categoryRef = useRef<HTMLDivElement>(null)
 
 	//toggle category menu
@@ -29,12 +29,13 @@ const NavBar = (): JSX.Element => {
 			}
 		}
 	}
+	console.log(categoryDivIsBlock)
 
 	const toggleIcon = () => {
 		if (categoryDivIsBlock) {
-			return <FiChevronDown className="inline" />
-		} else {
 			return <FiChevronUp className="inline" />
+		} else {
+			return <FiChevronDown className="inline" />
 		}
 	}
 	return (
