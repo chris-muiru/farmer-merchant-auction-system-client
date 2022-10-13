@@ -2,7 +2,7 @@ import Image from "next/image"
 import React, { ReactElement } from "react"
 import {
 	FiChevronDown,
-	FiChevronUp,
+	FiChevronRight,
 	FiMail,
 	FiMenu,
 	FiHome,
@@ -13,7 +13,7 @@ import { BsFillHouseFill } from "react-icons/bs"
 import Link from "next/link"
 const NavBar = (): JSX.Element => {
 	return (
-		<div className="flex flex-col bg-black w-60  text-white min-h-screen">
+		<div className="flex flex-col bg-black w-[400px]  text-white min-h-screen">
 			<div className="bg-slate-800">
 				<Image
 					src="/slinger.png"
