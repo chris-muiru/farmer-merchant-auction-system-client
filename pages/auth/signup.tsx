@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { ReactElement } from "react"
-import Auth from "../../components/Auth"
+import Auth from "../../components/Auth/Auth"
 
 const SignUp = () => {
 	return (
@@ -10,7 +10,7 @@ const SignUp = () => {
 					<h2 className="text-3xl">Hello</h2>
 					<p className="">please enter your details</p>
 				</div>
-				<form action="" className="flex flex-col">
+				<form className="flex flex-col">
 					<div className="flex flex-col space-y-5">
 						<label htmlFor="email">Email</label>
 						<input
@@ -44,7 +44,10 @@ const SignUp = () => {
 							<button className="bg-blue-700 w-60 text-center p-3 rounded-sm">
 								Merchant
 							</button>
-							<button className="bg-green-700 w-60 text-center p-3 rounded-sm">
+							<button
+								onClick={() => {}}
+								className="bg-green-700 w-60 text-center p-3 rounded-sm"
+							>
 								Farmer
 							</button>
 						</div>
