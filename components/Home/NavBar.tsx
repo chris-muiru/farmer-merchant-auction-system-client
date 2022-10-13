@@ -8,10 +8,35 @@ import {
 	FiHome,
 	FiClipboard,
 	FiSmile,
+	FiChevronUp,
 } from "react-icons/fi"
 import { BsFillHouseFill } from "react-icons/bs"
 import Link from "next/link"
+import { useState, useRef } from "react"
 const NavBar = (): JSX.Element => {
+	const [categoryDivIsBlock, setCategoryDivIsBlock] = useState(true)
+	const categoryRef = useRef<HTMLDivElement>(null)
+
+	//toggle category menu
+	const toggleCategory = (): void => {
+		if (categoryRef.current) {
+			if (categoryDivIsBlock) {
+				categoryRef.current.style.display = "none"
+				setCategoryDivIsBlock(false)
+			} else {
+				categoryRef.current.style.display = "block"
+				setCategoryDivIsBlock(true)
+			}
+		}
+	}
+
+	const toggleIcon = () => {
+		if (categoryDivIsBlock) {
+			return <FiChevronDown className="inline" />
+		} else {
+			return <FiChevronUp className="inline" />
+		}
+	}
 	return (
 		<div className="flex flex-col bg-black w-[400px]  text-white min-h-screen">
 			<div className="bg-slate-800">
@@ -48,13 +73,23 @@ const NavBar = (): JSX.Element => {
 						</a>
 					</Link>
 				</div>
+
 				<div>
-					<div className="mb-3 hover:text-green-500">
+					<button
+						onClick={() => {
+							toggleCategory()
+						}}
+						className="mb-3 hover:text-green-500"
+					>
 						<FiMenu className="inline mr-2 text-2xl" />
 						Categories &nbsp;
-						<FiChevronDown className="inline" />
-					</div>
-					<div className=" min-h-[100px] pl-10 space-y-4 box-border block">
+						{toggleIcon()}
+					</button>
+
+					<div
+						ref={categoryRef}
+						className=" min-h-[100px] pl-10 space-y-4 box-border hidden"
+					>
 						<p className="hover:text-green-500">hello</p>
 						<p className="hover:text-green-500">hello</p>
 						<p className="hover:text-green-500">hello</p>
