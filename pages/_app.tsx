@@ -1,4 +1,5 @@
-import Layout from "components/Home/Layout"
+import Header from "components/Header"
+import Layout from "components/Layout/Layout"
 import type { AppProps } from "next/app"
 import { NextPage } from "next/types"
 import { ReactElement, ReactNode } from "react"
@@ -12,7 +13,16 @@ type AppPropsWithLayout = AppProps & {
 }
 
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
-	const getLayout = Component.getLayout ?? ((page) => <Layout>{page}</Layout>)
+	const getLayout =
+		Component.getLayout ??
+		((page) => (
+			<Layout>
+				<>
+					<Header />
+					{page}
+				</>
+			</Layout>
+		))
 	return getLayout(<Component {...pageProps} />)
 }
 
