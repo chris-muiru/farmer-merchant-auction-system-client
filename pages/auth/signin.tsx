@@ -5,7 +5,6 @@ import Auth from "../../components/Auth/Auth"
 
 import { NextPageWithLayout } from "pages/_app"
 import { ReactElement } from "react"
-import Layout from "components/Home/Layout"
 const SignIn: NextPageWithLayout = () => {
 	return (
 		<Auth>
