@@ -43,7 +43,7 @@ const NavBar = (): JSX.Element => {
 	return (
 		<div className=" bg-black w-[400px]  text-white min-h-screen sticky ">
 			<div className="sticky top-0">
-				<div className="bg-slate-400 ">
+				<div className="">
 					<Image
 						src="/slinger.png"
 						width={150}
