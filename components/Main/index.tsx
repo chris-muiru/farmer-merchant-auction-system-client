@@ -3,7 +3,7 @@ import Product from "./Product"
 
 const Main = () => {
 	return (
-		<div className="min-w-full min-h-screen bg-slate-200 space-y-10 flex flex-col items-center">
+		<div className="min-w-full min-h-screen space-y-10 flex flex-col items-center">
 			<Product />
 			<Product />
 			<Product />
