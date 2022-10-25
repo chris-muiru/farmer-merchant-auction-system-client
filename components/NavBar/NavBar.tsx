@@ -62,9 +62,9 @@ const NavBar = (): JSX.Element => {
 						</Link>
 					</div>
 					<div className="hover:text-green-500">
-						<Link href="/">
+						<Link href="/orders">
 							<a>
-								<FiClipboard className="inline mr-2 text-2xl " />
+								<FiClipboard className="inline mr-2 text-2xl" />
 								Orders
 							</a>
 						</Link>
@@ -86,10 +86,9 @@ const NavBar = (): JSX.Element => {
 							ref={categoryRef}
 							className=" min-h-[100px] pl-10 space-y-4 box-border hidden"
 						>
-							<p className="hover:text-green-500">hello</p>
-							<p className="hover:text-green-500">hello</p>
-							<p className="hover:text-green-500">hello</p>
-							<p className="hover:text-green-500">hello</p>
+							<p className="hover:text-green-500">Foodstaff</p>
+							<p className="hover:text-green-500">Livestock</p>
+							<p className="hover:text-green-500">Machinery</p>
 						</div>
 					</div>
 					<div className="hover:text-green-500">
@@ -101,7 +100,7 @@ const NavBar = (): JSX.Element => {
 						</Link>
 					</div>
 					<div className="hover:text-green-500">
-						<Link href="/">
+						<Link href="/reviews">
 							<a>
 								<FiSmile className="inline mr-2 text-2xl" />
 								Reviews
