@@ -38,7 +38,6 @@ const ProductDetail = () => {
 					Description
 				</h2>
 				<div className="p-2 m-2 leading-loose text-justify">
-					
 					ducimus quibusdam, laboriosam natus atque reprehenderit suscipit
 					voluptatibus delectus reiciendis incidunt dolorum ex iusto ut
 					facilis. Veritatis quae at rem? Lorem ipsum dolor sit, amet
@@ -66,25 +65,40 @@ const ProductDetail = () => {
 					facilis. Veritatis quae at rem? Lorem ipsum dolor sit, amet
 					consectetur adipisicing elit. Quibusdam cumque quod itaque. Quod
 					odio quidem mollitia illum et distinctio odit! Excepturi animi
-					quidem repudiandae. Fuga consequatur cupiditate velit beatae
-				d
+					quidem repudiandae. Fuga consequatur cupiditate velit beatae d
 				</div>
 				<h2 className="text-green-500 text-2xl text-center m-3">Contact</h2>
 			</div>
 
 			{/* bid section */}
-			<div className="flex flex-col w-[400px] mt-[100px] sticky top-20 h-[400px] bg-white p-4 rounded-xl" >
-				<button className="bg-green-600 text-white h-14 rounded-md self-center w-full">
+			<div className="flex flex-col w-[500px] mt-[100px] sticky top-20 h-[500px] bg-white p-4 rounded-xl space-y-7">
+				<button className="bg-green-600 text-white p-4 rounded-md self-center w-full">
 					<div className=" w-1/2 m-auto">
 						<BiBeenHere className="inline text-xl" />
 						<span>bid</span>
 					</div>
 				</button>
-				<div className="text-3xl p-4 rounded-sm">
-					<p className="mt-2">Ksh 40,000</p>
-				</div>
+				<table id="quantity-table" className="w-full">
+					<tbody>
+						<tr>
+							<td></td>
+							<td className="w-[700px]">
+								<input
+									type="number"
+									className=" outline-none w-full h-full text-3xl box-border"
+									placeholder="Quantity"
+								/>
+							</td>
+							<td></td>
+						</tr>
+					</tbody>
+				</table>
+
 				<div className="">
-					<div className="relative">
+					<div className="text-3xl p-4 rounded-sm">
+						<p className="mt-2">Ksh 40,000</p>
+					</div>
+					<div className="relative ml-4">
 						<Image
 							className="rounded-full"
 							width={60}
