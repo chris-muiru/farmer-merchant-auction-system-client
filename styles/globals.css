@@ -7,10 +7,17 @@ body {
 	padding: 0px;
 	height: 100%;
 }
-table,
-th,
-td {
+#order-table th,td {
 	border-width: 1px;
 	border-collapse: collapse;
-	padding: 20px;
+	width: 300px;
+	padding: 10px;
+}
+
+#quantity-table td {
+	border-width: 1px;
+	border-collapse: collapse;
+}
+#declined {
+	color: red;
 }
