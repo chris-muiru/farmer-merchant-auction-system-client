@@ -12,13 +12,11 @@ const Auth: NextPage<Props> = ({ children }) => {
 				<div className="w-full">
 					<div className="m-auto w-1/2 mt-40 space-y-10 ">{children}</div>
 				</div>
-				<div className="w-full ">
+				<div className="w-full relative">
 					<Image
 						alt="fruits"
 						src="/fruits.jpg"
-						width="100%"
-						height="100%"
-						layout="responsive"
+						layout="fill"
 					/>
 				</div>
 			</div>
