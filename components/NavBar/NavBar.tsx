@@ -92,7 +92,7 @@ const NavBar = (): JSX.Element => {
 						</div>
 					</div>
 					<div className="hover:text-green-500">
-						<Link href="/">
+						<Link href="/messages">
 							<a>
 								<FiMail className="inline mr-2 text-2xl" />
 								Messages
