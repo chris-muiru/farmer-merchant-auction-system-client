@@ -5,16 +5,15 @@ import {
 	FiChevronRight,
 	FiMail,
 	FiMenu,
-	FiHome,
 	FiClipboard,
 	FiSmile,
 	FiChevronUp,
 } from "react-icons/fi"
+import { FaSellcast } from "react-icons/fa"
 import { BsFillHouseFill } from "react-icons/bs"
 import Link from "next/link"
 import { useState, useRef } from "react"
-import Reputation from "../Main/Reputation"
-import { AiFillStar } from "react-icons/ai"
+import Reputation from "./Reputation"
 const NavBar = (): JSX.Element => {
 	const [categoryDivIsBlock, setCategoryDivIsBlock] = useState(false)
 	const categoryRef = useRef<HTMLDivElement>(null)
@@ -56,8 +55,16 @@ const NavBar = (): JSX.Element => {
 					<div className="hover:text-green-500">
 						<Link href="/">
 							<a>
-								<BsFillHouseFill className="inline mr-2 text-2xl" />
+								<BsFillHouseFill className="inline mr-2 text-2xl " />
 								Dashboard
+							</a>
+						</Link>
+					</div>
+					<div className="hover:text-green-500">
+						<Link href="/sell">
+							<a>
+								<FaSellcast className="inline mr-2 text-2xl" />
+								Sell
 							</a>
 						</Link>
 					</div>
