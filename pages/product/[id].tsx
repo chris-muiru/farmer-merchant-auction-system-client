@@ -1,3 +1,4 @@
+import SelectionStars from "components/Reviews/SelectionStars"
 import SendReview from "components/Reviews/SendReview"
 import Image from "next/image"
 import Link from "next/link"
@@ -73,6 +74,7 @@ const ProductDetail = () => {
 					<h2 className="text-green-500 text-2xl text-center m-3">
 						Review
 					</h2>
+					<SelectionStars />
 					<SendReview />
 				</div>
 			</div>
