@@ -28,11 +28,7 @@ const Order = () => {
 						<td>22/10/22</td>
 						<td>James Kamau N</td>
 						<td>07555888</td>
-						<Link href="/orders">
-							<td className="text-blue-800 hover:underline hover:decoration-blue-800 hover:cursor-pointer">
-								Two Hp computers
-							</td>
-						</Link>
+						<td>Two Hp computers</td>
 						<td>2</td>
 						<td>24/6/22</td>
 						<td id="declined" className="">
