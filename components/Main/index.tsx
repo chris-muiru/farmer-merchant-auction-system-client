@@ -1,11 +1,10 @@
 import React from "react"
-import CreateProduct from "../NavBar/CreateProduct"
-import Product from "./Product"
+import Product from "../Product/Product"
 
 const Main = () => {
 	return (
 		<div className="min-h-screen flex flex-col w-[90%] m-auto p-10 space-y-3">
-			<Product />
+			<h2 className="text-2xl p-2">{"My products"}</h2>
 			<Product />
 			<Product />
 		</div>
