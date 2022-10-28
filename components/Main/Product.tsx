@@ -5,7 +5,7 @@ import React from "react"
 const Product = () => {
 	return (
 		<Link href="/product/1">
-			<div className="flex flex-row w-[92%] ml-10  space-x-5 rounded-xl border bg-white p-4  min-h-[300px] hover:cursor-pointer">
+			<div className="flex flex-row space-x-5 rounded-xl border bg-white p-4  min-h-[300px] hover:cursor-pointer">
 				<div className="w-60 min-h-[200px] bg-slate-500 my-auto relative rounded-lg">
 					<Image src="/fruits.jpg" layout="fill" className="rounded-3xl" />
 				</div>
