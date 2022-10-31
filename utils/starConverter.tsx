@@ -1,4 +1,3 @@
-import Image from "next/image"
 import { AiFillStar } from "react-icons/ai"
 
 const starConverter = (total: 0 | 1 | 2 | 3 | 4 | 5): JSX.Element[] => {

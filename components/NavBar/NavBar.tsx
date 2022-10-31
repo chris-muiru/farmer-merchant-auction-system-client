@@ -44,6 +44,7 @@ const NavBar = (): JSX.Element => {
 			<div className="sticky top-0">
 				<div className="">
 					<Image
+						alt="add slinger photo"
 						src="/slinger.png"
 						width={150}
 						height={150}

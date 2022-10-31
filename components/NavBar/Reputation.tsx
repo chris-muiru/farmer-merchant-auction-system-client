@@ -1,5 +1,4 @@
 import React from "react"
-import Image from "next/image"
 import starConverter from "utils/starConverter"
 const count = 2
 interface Iprop {

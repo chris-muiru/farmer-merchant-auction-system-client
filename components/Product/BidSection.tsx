@@ -40,6 +40,7 @@ const BidSection = () => {
 						className="rounded-full"
 						width={60}
 						height={60}
+						alt="add fruits"
 						src="/fruits.jpg"
 					/>
 					{isOnline(true)}

@@ -7,7 +7,12 @@ const Product = () => {
 		<Link href="/product/1">
 			<div className="flex flex-row space-x-5 rounded-xl border bg-white p-4  min-h-[300px] hover:cursor-pointer">
 				<div className="w-60 min-h-[200px] bg-slate-500 my-auto relative rounded-lg">
-					<Image src="/fruits.jpg" layout="fill" className="rounded-3xl" />
+					<Image
+						alt="add fruits"
+						src="/fruits.jpg"
+						layout="fill"
+						className="rounded-3xl"
+					/>
 				</div>
 				<div className="w-full relative ">
 					<h2 className="text-2xl font-bold my-3">

@@ -29,6 +29,7 @@ const ProductDetail = () => {
 				<div className="m-auto flex flex-row">
 					<div className="h-[500px] rounded-lg w-[600px] relative">
 						<Image
+							alt="add fruits"
 							src="/fruits.jpg"
 							layout="fill"
 							className="rounded-xl"
