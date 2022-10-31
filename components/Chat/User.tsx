@@ -7,6 +7,7 @@ const User = () => {
 			<div className="relative flex flex-row m-3 p-3 border hover:bg-green-200 duration-200 rounded-xl ">
 				<Image
 					src="/fruits.jpg"
+					alt="matunda"
 					width={100}
 					height={100}
 					className="rounded-xl"
