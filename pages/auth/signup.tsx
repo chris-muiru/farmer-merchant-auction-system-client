@@ -40,8 +40,16 @@ const SignUp = () => {
 							placeholder="Enter your password"
 							id="password"
 						/>
-						<div className="flex flex-row justify-between  text-white">
-							<button className="bg-blue-700 w-60 text-center p-3 rounded-sm">
+
+						<label htmlFor="role">User role</label>
+						<select className="p-4 w-full bg-slate-100 focus:border-none focus:outline-none">
+							<option value="" disabled selected>
+								Select role
+							</option>
+							<option value="volvo">Merchant</option>
+							<option value="volvo">Farmer</option>
+						</select>
+						{/* <button className="bg-blue-700 w-60 text-center p-3 rounded-sm">
 								Merchant
 							</button>
 							<button
@@ -49,8 +57,7 @@ const SignUp = () => {
 								className="bg-green-700 w-60 text-center p-3 rounded-sm"
 							>
 								Farmer
-							</button>
-						</div>
+							</button> */}
 					</div>
 					<button
 						type="submit"

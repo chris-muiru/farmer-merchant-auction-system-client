@@ -4,8 +4,56 @@ import Link from "next/link"
 import Auth from "../../components/Auth/Auth"
 
 import { NextPageWithLayout } from "pages/_app"
-import { ReactElement } from "react"
+import { ReactElement, useState } from "react"
+import { LOCALHOST } from "components/Urls"
+import jwtDecode from "jwt-decode"
+
 const SignIn: NextPageWithLayout = () => {
+	const [authTokens, setAuthTokens] = useState(() =>
+		//  TODO: understand mounting in nextjs
+		typeof window !== "undefined"
+			? localStorage.getItem("auctionSystemToken")
+				? JSON.parse(localStorage.getItem("auctionSystemToken") || "")
+				: null
+			: null
+	)
+	const [user, setUser] = useState(() =>
+		typeof window !== "undefined"
+			? localStorage.getItem("auctionSystemToken")
+				? JSON.parse(localStorage.getItem("auctionSystemToken") || "")
+						.access
+				: null
+			: null
+	)
+	let loginUser = async (event: React.FormEvent<HTMLFormElement>) => {
+		event.preventDefault()
+		const { email, password } = event.target as typeof event.target & {
+			email: { value: string }
+			password: { value: string }
+		}
+		const response = await fetch(`${LOCALHOST}/auth/token/`, {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify({
+				email: email.value,
+				password: password.value,
+			}),
+		})
+		const dataJson = await response.json()
+		if (response.status === 200) {
+			setUser(jwtDecode(dataJson.access))
+			setAuthTokens(dataJson)
+
+			if (typeof window !== "undefined") {
+				localStorage.setItem("auctionSystemToken", JSON.stringify(dataJson))
+			}
+			// there is a major bug in ts window.location. thats why i ignored ts-here
+			// @ts-ignore
+			window.location = "/"
+		} else {
+			alert("something went wrong")
+		}
+	}
 	return (
 		<Auth>
 			<>
@@ -14,7 +62,7 @@ const SignIn: NextPageWithLayout = () => {
 					<p className="">please enter your details</p>
 				</div>
 
-				<form action="" className="flex flex-col">
+				<form action="" className="flex flex-col" onSubmit={loginUser}>
 					<div className="flex flex-col space-y-5">
 						<label htmlFor="" id="email">
 							Email

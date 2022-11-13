@@ -1,6 +1,6 @@
 import { AiFillStar } from "react-icons/ai"
 
-const starConverter = (total: 0 | 1 | 2 | 3 | 4 | 5): JSX.Element[] => {
+const starConverter = (total:number): JSX.Element[] => {
 	const arr = []
 	for (let i: number = 0; i < total; i++) {
 		arr.push(<AiFillStar className="text-yellow-500 inline" />)

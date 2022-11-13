@@ -9,11 +9,10 @@ const Auth: NextPage<Props> = ({ children }) => {
 		<div>
 			<div className="flex flex-row min-h-screen">
 				<div className="w-full">
-					<div className="m-auto w-1/2 mt-40 space-y-10 ">{children}</div>
+					<div className="m-auto w-1/2 mt-20 space-y-10 ">{children}</div>
 				</div>
 				<div className="w-full relative min-h-screen">
-					{/* <Image src="/fruits.jpg" layout="fill" /> */}
-					{/* <Image src="/fruits.jpg" layout="fill" objectFit="cover" /> */}
+					<Image src="/fruits.jpg" layout="fill" />
 				</div>
 			</div>
 		</div>
