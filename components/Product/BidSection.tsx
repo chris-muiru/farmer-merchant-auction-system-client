@@ -18,22 +18,25 @@ interface bidSectionProps {
 	farmer_name: string
 	product_price: number
 	product_id: number
+	product_farmer_phone: string
 }
 const BidSection: FC<bidSectionProps> = ({
 	farmer_name,
 	product_price,
 	product_id,
+	product_farmer_phone,
 }) => {
 	const MySwal = withReactContent(Swal)
 	const router = useRouter()
 	const { getAuthToken } = useAuthContext()
-	const [farmerRating, setFarmerRating] = useState({ rating: "" })
-	const [quantity, setQuantity] = useState(1)
+	const [farmerRating, setFarmerRating] = useState<{ rating: number }>()
+	const [quantity, setQuantity] = useState<number>()
 	const [newOrder, setNewOrder] = useState({
 		order_quantity: 1,
 		order_price: 0,
 		order_product_id: 1,
 	})
+	const [rate, setRate] = useState<number>()
 	const ratingUrl = `${LOCALHOST}/reviews/rating/`
 	const orderUrl = `${LOCALHOST}/orders/`
 
@@ -48,7 +51,6 @@ const BidSection: FC<bidSectionProps> = ({
 		let dataJson = await response.json()
 		setFarmerRating(dataJson)
 	}
-	let { rating } = farmerRating
 	const handleQuantity = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const quantity = parseInt(event.target.value)
 		setQuantity(quantity)
@@ -82,12 +84,9 @@ const BidSection: FC<bidSectionProps> = ({
 			window.location = "/"
 		}, 3000)
 	}
-	const createNewOrderHandler = () => {
-		createNewOrder()
-	}
 	useEffect(() => {
 		setNewOrder({
-			order_quantity: quantity,
+			order_quantity: Number(quantity),
 			order_product_id: product_id,
 			order_price: product_price,
 		})
@@ -96,7 +95,7 @@ const BidSection: FC<bidSectionProps> = ({
 	return (
 		<div className="flex flex-col w-[500px]  sticky top-20 h-[500px] bg-white p-4 rounded-xl space-y-7">
 			<button
-				onClick={createNewOrderHandler}
+				onClick={createNewOrder}
 				className="bg-green-600 text-white p-4 rounded-md self-center w-full hover:bg-green-500"
 			>
 				<div className=" w-1/2 m-auto">
@@ -107,7 +106,6 @@ const BidSection: FC<bidSectionProps> = ({
 			<table id="quantity-table" className="w-full">
 				<tbody>
 					<tr>
-						<td></td>
 						<td className="w-[700px]">
 							<input
 								onChange={handleQuantity}
@@ -143,12 +141,12 @@ const BidSection: FC<bidSectionProps> = ({
 							}
 							emptySymbol={<AiFillStar className="inline" />}
 							quiet={true}
-							initialRating={parseInt(rating)}
+							initialRating={Number(farmerRating?.rating)}
 						/>
 					</div>
 				</div>
 				<div className="bg-green-500 mt-4 flex justify-center items-center text-white m-auto rounded-md h-[40px] w-full">
-					0746646464
+					{product_farmer_phone}
 				</div>
 				{/* TODO: message feature to be added in future */}
 				{/* <Link href="/messages/1">
