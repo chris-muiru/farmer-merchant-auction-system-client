@@ -1,5 +1,5 @@
 import Image from "next/image"
-import React, { ReactElement } from "react"
+import React, { FC, ReactElement, useEffect } from "react"
 import {
 	FiChevronDown,
 	FiChevronRight,
@@ -14,10 +14,12 @@ import { BsFillHouseFill } from "react-icons/bs"
 import Link from "next/link"
 import { useState, useRef } from "react"
 import Reputation from "./Reputation"
-const NavBar = (): JSX.Element => {
+import { AiOutlineFilePdf } from "react-icons/ai"
+const NavBar = () => {
 	const [categoryDivIsBlock, setCategoryDivIsBlock] = useState(false)
 	const categoryRef = useRef<HTMLDivElement>(null)
 
+	useEffect(() => {}, [])
 	//toggle category menu
 	const toggleCategory = (): void => {
 		if (categoryRef.current) {
@@ -39,6 +41,7 @@ const NavBar = (): JSX.Element => {
 			return <FiChevronDown className="inline" />
 		}
 	}
+
 	return (
 		<div className=" bg-black w-[400px]  text-white min-h-screen sticky ">
 			<div className="sticky top-0">
@@ -51,7 +54,7 @@ const NavBar = (): JSX.Element => {
 						className="rounded-md"
 					/>
 				</div>
-				<nav className="space-y-14 ml-10">
+				<nav className="space-y-20 ml-10">
 					<Reputation />
 					<div className="hover:text-green-500">
 						<Link href="/">
@@ -78,7 +81,7 @@ const NavBar = (): JSX.Element => {
 						</Link>
 					</div>
 
-					<div>
+					{/* <div>
 						<button
 							onClick={() => {
 								toggleCategory()
@@ -98,14 +101,14 @@ const NavBar = (): JSX.Element => {
 							<p className="hover:text-green-500">Livestock</p>
 							<p className="hover:text-green-500">Machinery</p>
 						</div>
-					</div>
+					</div> */}
 					<div className="hover:text-green-500">
-						<Link href="/messages">
-							<a>
-								<FiMail className="inline mr-2 text-2xl" />
-								Messages
-							</a>
-						</Link>
+						{/* TODO: message feature to be added in future */}
+						{/* <FiMail className="inline mr-2 text-2xl" /> */}
+						<button>
+							<AiOutlineFilePdf className="inline mr-2 text-2xl" />
+							System report
+						</button>
 					</div>
 					<div className="hover:text-green-500">
 						<Link href="/reviews">

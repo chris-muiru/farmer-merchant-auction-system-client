@@ -7,7 +7,8 @@ body {
 	padding: 0px;
 	height: 100%;
 }
-#order-table th,td {
+#order-table th,
+td {
 	border-width: 1px;
 	border-collapse: collapse;
 	width: 300px;
@@ -19,5 +20,22 @@ body {
 	border-collapse: collapse;
 }
 #declined {
-	color: red;
+	--tw-text-opacity: 1;
+	color: rgb(239 68 68 / var(--tw-text-opacity));
+}
+#success {
+	--tw-text-opacity: 1;
+	color: rgb(34 197 94 / var(--tw-text-opacity));
+}
+#pending {
+	--tw-text-opacity: 1;
+	color: rgb(234 179 8 / var(--tw-text-opacity));
+}
+#tr-success {
+	--tw-bg-opacity: 1;
+	background-color: rgb(220 252 231 / var(--tw-bg-opacity));
+}
+#tr-declined {
+	--tw-bg-opacity: 1;
+    background-color: rgb(254 226 226 / var(--tw-bg-opacity));
 }

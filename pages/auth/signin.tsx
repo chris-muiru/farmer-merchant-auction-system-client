@@ -4,8 +4,24 @@ import Link from "next/link"
 import Auth from "../../components/Auth/Auth"
 
 import { NextPageWithLayout } from "pages/_app"
-import { ReactElement } from "react"
+import { ReactElement, useState } from "react"
+import { LOCALHOST } from "components/Urls"
+import jwtDecode from "jwt-decode"
+import { useAuthContext } from "context/AuthContextProvider"
+
 const SignIn: NextPageWithLayout = () => {
+	const { login } = useAuthContext()
+
+	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+		event.preventDefault()
+		const { email, password } = event.target as typeof event.target & {
+			email: { value: string }
+			password: { value: string }
+		}
+		// console.log("email", email.value)
+		await login(email.value, password.value)
+	}
+
 	return (
 		<Auth>
 			<>
@@ -14,7 +30,11 @@ const SignIn: NextPageWithLayout = () => {
 					<p className="">please enter your details</p>
 				</div>
 
-				<form action="" className="flex flex-col">
+				<form
+					method="POST"
+					className="flex flex-col"
+					onSubmit={handleSubmit}
+				>
 					<div className="flex flex-col space-y-5">
 						<label htmlFor="" id="email">
 							Email
@@ -63,3 +83,10 @@ SignIn.getLayout = (page: ReactElement) => {
 	return <>{page}</>
 }
 export default SignIn
+function login(value: any, value1: any) {
+	throw new Error("Function not implemented.")
+}
+
+function async(value: string, value1: string) {
+	throw new Error("Function not implemented.")
+}
