@@ -11,8 +11,10 @@ interface Iprop {
 }
 
 const Reputation = () => {
-	const { getAuthToken, user } = useAuthContext()
+	const { getAuthToken, getUser } = useAuthContext()
 	const [farmerRating, setFarmerRating]: any = useState()
+	const [user, setUser] = useState<string | null>()
+
 	const fetchFarmerRating = async () => {
 		let response = await fetch(ratingUrl, {
 			method: "GET",
@@ -26,11 +28,11 @@ const Reputation = () => {
 	}
 	useEffect(() => {
 		fetchFarmerRating()
+		setUser(getUser())
 	}, [])
 	return (
-		<div className="mt-10">
-			<span className="text-yellow-400 font-bold">{user}</span>
-			&lt;&lt;&nbsp;
+		<div className="mt-10 space-x-2">
+			<span className="text-yellow-400 font-bold capitalize">{user}</span>
 			{/* @ts-ignore */}
 			<Rating
 				fullSymbol={<AiFillStar className="inline text-yellow-400" />}
@@ -38,7 +40,6 @@ const Reputation = () => {
 				quiet={true}
 				initialRating={parseInt(farmerRating)}
 			/>
-			&nbsp;&gt;&gt;
 		</div>
 	)
 }
