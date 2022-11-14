@@ -8,12 +8,10 @@ interface Iprop {
 const Layout: FC<Iprop> = ({ children }) => {
 	return (
 		<div className="flex flex-row w-full bg-slate-100">
-			<AuthContextProvider>
-				<>
-					<NavBar />
-					<div className="w-full">{children}</div>
-				</>
-			</AuthContextProvider>
+			<>
+				<NavBar />
+				<div className="w-full">{children}</div>
+			</>
 		</div>
 	)
 }
