@@ -1,5 +1,6 @@
 import Header from "components/Header"
 import Layout from "components/Layout/Layout"
+import AuthContextProvider from "context/AuthContextProvider"
 import type { AppProps } from "next/app"
 import { NextPage } from "next/types"
 import { ReactElement, ReactNode } from "react"
@@ -23,7 +24,11 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
 				</>
 			</Layout>
 		))
-	return getLayout(<Component {...pageProps} />)
+	return (
+		<AuthContextProvider>
+			<>{getLayout(<Component {...pageProps} />)}</>
+		</AuthContextProvider>
+	)
 }
 
 export default MyApp
