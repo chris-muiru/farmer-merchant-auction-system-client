@@ -24,7 +24,7 @@ const Reviews = () => {
 	return (
 		<div className="w-[90%] bg-white m-auto rounded-md p-3 space-y-2">
 			<div className="">
-				<p className="text-xl text-center ">Reviews for kris</p>
+				<p className="text-xl text-center ">Reviews</p>
 				<hr />
 			</div>
 			{rating &&
