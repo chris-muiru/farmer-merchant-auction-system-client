@@ -93,7 +93,11 @@ const Order = () => {
 								order_id: number
 							}) => {
 								return (
-									<tr id={`tr-${order_status}`} className="">
+									<tr
+										id={`tr-${order_status}`}
+										className=""
+										key={order_id}
+									>
 										<td className="">{order_id}</td>
 										<td>{order_creation_date}</td>
 										<td>{order_merchant_name}</td>
