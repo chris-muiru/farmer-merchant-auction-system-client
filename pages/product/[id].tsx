@@ -45,6 +45,7 @@ const ProductDetail: FC<ProductProps> = () => {
 						product_location,
 						product_date,
 						product_farmer_name,
+						product_farmer_phone,
 						product_description,
 						product_product_file_data: { product_file_image },
 					}: {
@@ -54,6 +55,7 @@ const ProductDetail: FC<ProductProps> = () => {
 						product_location: string
 						product_date: string
 						product_description: string
+						product_farmer_phone: string
 						product_farmer_name: string
 						product_product_file_data: { product_file_image: string }
 					}) => {
@@ -98,6 +100,7 @@ const ProductDetail: FC<ProductProps> = () => {
 												fullSymbol={
 													<AiFillStar className="inline text-yellow-300" />
 												}
+												initialRating={rating}
 												onClick={(selectedRating) => {
 													setRating(selectedRating)
 												}}
@@ -114,6 +117,7 @@ const ProductDetail: FC<ProductProps> = () => {
 									product_price={product_price}
 									farmer_name={product_farmer_name}
 									product_id={product_id}
+									product_farmer_phone={product_farmer_phone}
 								/>
 							</>
 						)
