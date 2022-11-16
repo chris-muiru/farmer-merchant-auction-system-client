@@ -1,5 +1,5 @@
 import React, { FC } from "react"
-import swalStatus from "utils/swalStatus"
+import SwalStatus from "utils/swalStatus"
 import { useAuthContext } from "../../context/AuthContextProvider"
 import { LOCALHOST } from "../Urls"
 interface reviewProp {
@@ -29,7 +29,7 @@ const SendReview: FC<reviewProp> = ({ rating, review_product_id }) => {
 		})
 		const data = await response.status
 		{
-			swalStatus(data, "review created successfully")
+			SwalStatus(data, "review created successfully")
 		}
 		console.log(data)
 	}
