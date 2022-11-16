@@ -13,7 +13,7 @@ import Link from "next/link"
 import { BsPencilSquare } from "react-icons/bs"
 import SwalStatus from "utils/swalStatus"
 const ProductDetail: FC<ProductProps> = () => {
-	const { getAuthToken } = useAuthContext()
+	const { getAuthToken, role } = useAuthContext()
 	const router = useRouter()
 	const { id } = router.query
 	const productUrl = `${LOCALHOST}/products/${id}`
@@ -43,13 +43,50 @@ const ProductDetail: FC<ProductProps> = () => {
 		let status = response.status
 		SwalStatus(status, "product deleted successfully")
 	}
+	const displayProductManiputationIcons = () => {
+		if (role == "farmer") {
+			return (
+				<>
+					<Link href={`/product/${id}/update`}>
+						<BsPencilSquare className="text-2xl inline hover:text-green-700" />
+					</Link>
+					<button onClick={deleteProductById}>
+						<MdDelete className="text-2xl inline" />
+					</button>
+				</>
+			)
+		}
+	}
+	const displayRatingComponent = (product_id: number, rating: number) => {
+		if (role == "merchant") {
+			return (
+				<div>
+					<div className="w-3/4 m-auto  text-4xl mb-5 gap-4 flex justify-center">
+						{/* @ts-ignore */}
+						<Rating
+							className="gap-4"
+							emptySymbol={<AiFillStar className="inline" />}
+							fullSymbol={
+								<AiFillStar className="inline text-yellow-300" />
+							}
+							initialRating={rating}
+							onClick={(selectedRating) => {
+								setRating(selectedRating)
+							}}
+						/>
+					</div>
+					<SendReview rating={rating} review_product_id={product_id} />
+				</div>
+			)
+		}
+	}
 	useEffect(() => {
 		if (id) {
 			fetchProductById()
 		}
 	}, [id])
 	return (
-		<div className="flex flex-row w-4/5 m-auto space-x-5 relative">
+		<div className="flex flex-row w-4/5 m-auto space-x-3 relative">
 			{product &&
 				product.map(
 					({
@@ -79,12 +116,7 @@ const ProductDetail: FC<ProductProps> = () => {
 									<div className="flex flex-row h-20 justify-center mt-6 text-green-500">
 										<h2 className="text-2xl">{product_name}</h2>
 										<div className="absolute right-0 top-[27px] space-x-4">
-											<Link href={`/product/${id}/update`}>
-												<BsPencilSquare className="text-2xl inline hover:text-green-700" />
-											</Link>
-											<button onClick={deleteProductById}>
-												<MdDelete className="text-2xl inline" />
-											</button>
+											{/* {displayProductManiputationIcons()} */}
 										</div>
 									</div>
 
@@ -109,27 +141,8 @@ const ProductDetail: FC<ProductProps> = () => {
 										<h2 className="text-green-500 text-2xl text-center m-3">
 											Review
 										</h2>
-										<div className="w-3/4 m-auto  text-4xl mb-5 gap-4 flex justify-center">
-											{/* @ts-ignore */}
-											<Rating
-												className="gap-4"
-												emptySymbol={
-													<AiFillStar className="inline" />
-												}
-												fullSymbol={
-													<AiFillStar className="inline text-yellow-300" />
-												}
-												initialRating={rating}
-												onClick={(selectedRating) => {
-													setRating(selectedRating)
-												}}
-											/>
-										</div>
 
-										<SendReview
-											rating={rating}
-											review_product_id={product_id}
-										/>
+										{displayRatingComponent(product_id, rating)}
 									</div>
 								</div>
 								<BidSection
