@@ -11,9 +11,9 @@ import Swal from "sweetalert2"
 import withReactContent from "sweetalert2-react-content"
 
 import { useRouter } from "next/router"
-import swalStatus from "utils/swalStatus"
 import { AiFillStar } from "react-icons/ai"
 import Rating from "react-rating"
+import SwalStatus from "utils/swalStatus"
 interface bidSectionProps {
 	farmer_name: string
 	product_price: number
@@ -66,23 +66,7 @@ const BidSection: FC<bidSectionProps> = ({
 			body: JSON.stringify(newOrder),
 		})
 		const status = response.status
-		if (status == 200) {
-			MySwal.fire({
-				title: <strong>success!!!</strong>,
-				html: <i>Order created</i>,
-				icon: "success",
-			})
-		} else {
-			MySwal.fire({
-				title: <strong>error!!!</strong>,
-				html: <i>an error occurred</i>,
-				icon: "error",
-			})
-		}
-		setTimeout(() => {
-			// @ts-ignore
-			window.location = "/"
-		}, 3000)
+		SwalStatus(status, "successfully created an order")
 	}
 	useEffect(() => {
 		setNewOrder({
@@ -106,6 +90,7 @@ const BidSection: FC<bidSectionProps> = ({
 			<table id="quantity-table" className="w-full">
 				<tbody>
 					<tr>
+						<td></td>
 						<td className="w-[700px]">
 							<input
 								onChange={handleQuantity}
