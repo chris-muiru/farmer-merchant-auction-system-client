@@ -112,6 +112,7 @@ const AuthContextProvider: FC<ProviderProps> = ({ children }) => {
 		return authTokens.access
 	}
 	const getUser = () => {
+		// TODO: hmmmm...rdo we need a function
 		return user && (user.name as string)
 	}
 	console.log(userRole)
@@ -136,7 +137,9 @@ const AuthContextProvider: FC<ProviderProps> = ({ children }) => {
 		getAuthToken: getAuthToken,
 	}
 	useEffect(() => {
-		fetchUserRole()
+		if (authTokens) {
+			fetchUserRole()
+		}
 		let interval = setInterval(() => {
 			if (authTokens) {
 				refreshToken(authTokens.refresh)
