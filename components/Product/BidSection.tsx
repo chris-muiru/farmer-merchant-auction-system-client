@@ -14,6 +14,7 @@ import { useRouter } from "next/router"
 import { AiFillStar } from "react-icons/ai"
 import Rating from "react-rating"
 import SwalStatus from "utils/swalStatus"
+import { FaUserCircle } from "react-icons/fa"
 interface bidSectionProps {
 	farmer_name: string
 	product_price: number
@@ -115,7 +116,7 @@ const BidSection: FC<bidSectionProps> = ({
 						width={60}
 						height={60}
 						alt="add fruits"
-						src="/fruits.jpg"
+						src="/profile.jpg"
 					/>
 					<div className="inline ml-4 top-2 text-xl absolute">
 						<p className="capitalize">{farmer_name}</p>
@@ -125,8 +126,8 @@ const BidSection: FC<bidSectionProps> = ({
 								<AiFillStar className="inline text-yellow-400" />
 							}
 							emptySymbol={<AiFillStar className="inline" />}
-							quiet={true}
 							initialRating={Number(farmerRating?.rating)}
+							readonly={true}
 						/>
 					</div>
 				</div>
