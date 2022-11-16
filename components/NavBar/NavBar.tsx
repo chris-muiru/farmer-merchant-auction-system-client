@@ -13,15 +13,13 @@ import { FaSellcast, FaUserCircle } from "react-icons/fa"
 import { BsFillHouseFill } from "react-icons/bs"
 import Link from "next/link"
 import { useState, useRef } from "react"
-import Reputation from "./Reputation"
 import { AiOutlineFilePdf } from "react-icons/ai"
 import { useAuthContext } from "context/AuthContextProvider"
-import { GiPlagueDoctorProfile } from "react-icons/gi"
 const NavBar = () => {
 	const [categoryDivIsBlock, setCategoryDivIsBlock] = useState(false)
-	const categoryRef = useRef<HTMLDivElement>(null)
-	const { getUser } = useAuthContext()
-	useEffect(() => {}, [])
+	const categoryRef = useRef<HTMLDivElement>()
+	const { getUser, role } = useAuthContext()
+	const [user, setUser] = useState<string | null>()
 	//toggle category menu
 	const toggleCategory = (): void => {
 		if (categoryRef.current) {
@@ -43,6 +41,23 @@ const NavBar = () => {
 			return <FiChevronDown className="inline" />
 		}
 	}
+	const displaySellIcon = () => {
+		if (role == "farmer") {
+			return (
+				<div className="hover:text-green-500">
+					<Link href="/sell">
+						<a>
+							<FaSellcast className="inline mr-2 text-2xl" />
+							Sell
+						</a>
+					</Link>
+				</div>
+			)
+		}
+	}
+	useEffect(() => {
+		setUser(getUser())
+	}, [])
 
 	return (
 		<div className=" bg-black w-[400px]  text-white min-h-screen sticky">
@@ -55,10 +70,10 @@ const NavBar = () => {
 					className=""
 				/>
 				<nav className="space-y-20 ml-10 mt-10">
-					<p className="capitalize text-2xl text-yellow-500">
+					<div className="capitalize text-2xl text-yellow-500">
 						<FaUserCircle className="inline mr-2" />
-						{getUser()}
-					</p>
+						{user}
+					</div>
 					<div className="hover:text-green-500">
 						<Link href="/">
 							<a>
@@ -67,14 +82,7 @@ const NavBar = () => {
 							</a>
 						</Link>
 					</div>
-					<div className="hover:text-green-500">
-						<Link href="/sell">
-							<a>
-								<FaSellcast className="inline mr-2 text-2xl" />
-								Sell
-							</a>
-						</Link>
-					</div>
+					{displaySellIcon()}
 					<div className="hover:text-green-500">
 						<Link href="/orders">
 							<a>
