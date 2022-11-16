@@ -39,6 +39,7 @@ const Reputation = () => {
 				emptySymbol={<AiFillStar className="inline" />}
 				quiet={true}
 				initialRating={parseInt(farmerRating)}
+				readonly={true}
 			/>
 		</div>
 	)
