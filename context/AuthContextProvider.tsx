@@ -10,6 +10,7 @@ import { useRouter } from "next/router"
 interface contextInterface {
 	getUser: () => string | null
 	logOut: () => void
+	role: string | undefined
 	login: (email: string, password: string) => Promise<void>
 	getAuthToken: () => string
 }
@@ -50,8 +51,8 @@ const AuthContextProvider: FC<ProviderProps> = ({ children }) => {
 				: null
 			: null
 	)
-
-	let login = async (email: string, password: string) => {
+	const [userRole, setUserRole] = useState<string>()
+	const login = async (email: string, password: string) => {
 		const response = await fetch(`${LOCALHOST}/auth/token/`, {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
@@ -73,13 +74,13 @@ const AuthContextProvider: FC<ProviderProps> = ({ children }) => {
 			alert("something went wrong")
 		}
 	}
-	let logOut = () => {
+	const logOut = () => {
 		setAuthTokens(null)
 		localStorage.removeItem("authTokens")
 		router.push("/auth/signin")
 	}
 
-	let refreshToken = async (token: string) => {
+	const refreshToken = async (token: string) => {
 		let response = await fetch(`${LOCALHOST}/auth/token/refresh/`, {
 			method: "POST",
 			headers: {
@@ -106,19 +107,36 @@ const AuthContextProvider: FC<ProviderProps> = ({ children }) => {
 		if (!authTokens || (user.exp as number) < Date.now() / 1000) {
 			localStorage.clear()
 			router.push("/auth/signin")
+			return
 		}
 		return authTokens.access
 	}
 	const getUser = () => {
 		return user && (user.name as string)
 	}
-	let context = {
+	console.log(userRole)
+	const fetchUserRole = async () => {
+		const roleUrl = `${LOCALHOST}/users/role`
+		const response = await fetch(roleUrl, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${getAuthToken()}`,
+			},
+		})
+		const data = await response.json()
+		console.log(data)
+		setUserRole(data["role"])
+	}
+	const context = {
 		getUser: getUser,
 		logOut: logOut,
 		login: login,
+		role: userRole,
 		getAuthToken: getAuthToken,
 	}
 	useEffect(() => {
+		fetchUserRole()
 		let interval = setInterval(() => {
 			if (authTokens) {
 				refreshToken(authTokens.refresh)
