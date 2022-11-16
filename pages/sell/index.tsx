@@ -2,8 +2,7 @@ import React, { ChangeEvent, useEffect, useState } from "react"
 import { LOCALHOST } from "../../components/Urls"
 import { useAuthContext } from "../../context/AuthContextProvider"
 import { event } from "next/dist/build/output/log"
-import swalStatus from "utils/swalStatus"
-
+import SwalStatus from "utils/swalStatus"
 const Sell = () => {
 	const { getAuthToken } = useAuthContext()
 	const [image, setImage]: any = useState()
@@ -72,7 +71,7 @@ const Sell = () => {
 			body: JSON.stringify(payload),
 		})
 		const status = response.status
-		swalStatus(status, "product successfully created")
+		SwalStatus(status, "product successfully created")
 	}
 	return (
 		<div className="bg-white w-3/4 m-auto p-2 min-h-screen">
