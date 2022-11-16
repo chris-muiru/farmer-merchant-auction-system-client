@@ -9,16 +9,18 @@ import {
 	FiSmile,
 	FiChevronUp,
 } from "react-icons/fi"
-import { FaSellcast } from "react-icons/fa"
+import { FaSellcast, FaUserCircle } from "react-icons/fa"
 import { BsFillHouseFill } from "react-icons/bs"
 import Link from "next/link"
 import { useState, useRef } from "react"
 import Reputation from "./Reputation"
 import { AiOutlineFilePdf } from "react-icons/ai"
+import { useAuthContext } from "context/AuthContextProvider"
+import { GiPlagueDoctorProfile } from "react-icons/gi"
 const NavBar = () => {
 	const [categoryDivIsBlock, setCategoryDivIsBlock] = useState(false)
 	const categoryRef = useRef<HTMLDivElement>(null)
-
+	const { getUser } = useAuthContext()
 	useEffect(() => {}, [])
 	//toggle category menu
 	const toggleCategory = (): void => {
@@ -43,19 +45,20 @@ const NavBar = () => {
 	}
 
 	return (
-		<div className=" bg-black w-[400px]  text-white min-h-screen sticky ">
+		<div className=" bg-black w-[400px]  text-white min-h-screen sticky">
 			<div className="sticky top-0">
-				<div className="">
-					<Image
-						alt="add slinger photo"
-						src="/slinger.png"
-						width={150}
-						height={150}
-						className="rounded-md"
-					/>
-				</div>
-				<nav className="space-y-20 ml-10">
-					<Reputation />
+				<Image
+					alt="add slinger photo"
+					src="/slinger.png"
+					width={250}
+					height={250}
+					className=""
+				/>
+				<nav className="space-y-20 ml-10 mt-10">
+					<p className="capitalize text-2xl text-yellow-500">
+						<FaUserCircle className="inline mr-2" />
+						{getUser()}
+					</p>
 					<div className="hover:text-green-500">
 						<Link href="/">
 							<a>
