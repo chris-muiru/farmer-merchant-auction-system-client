@@ -7,7 +7,7 @@ interface Iprop {
 }
 const Layout: FC<Iprop> = ({ children }) => {
 	return (
-		<div className="flex flex-row w-full bg-slate-100">
+		<div className="flex flex-row w-full bg-slate-100 font-serif">
 			<>
 				<NavBar />
 				<div className="w-full">{children}</div>
