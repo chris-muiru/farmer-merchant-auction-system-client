@@ -11,9 +11,9 @@ interface Iprop {
 }
 
 const Reputation = () => {
-	const { getAuthToken, getUser } = useAuthContext()
+	const { getAuthToken, user } = useAuthContext()
 	const [farmerRating, setFarmerRating]: any = useState()
-	const [user, setUser] = useState<string | null>()
+	const [loggedInUser, setLoggedInUser] = useState<string | null>()
 
 	const fetchFarmerRating = async () => {
 		let response = await fetch(ratingUrl, {
@@ -28,7 +28,7 @@ const Reputation = () => {
 	}
 	useEffect(() => {
 		fetchFarmerRating()
-		setUser(getUser())
+		setLoggedInUser(user)
 	}, [])
 	return (
 		<div className="mt-10 space-x-2">
