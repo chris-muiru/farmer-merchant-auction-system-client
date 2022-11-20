@@ -1,3 +1,4 @@
+import Link from "next/link"
 import React, { FC } from "react"
 import { AiFillStar } from "react-icons/ai"
 import Rating from "react-rating"
@@ -6,6 +7,7 @@ interface MessageProps {
 	message: string
 	rating: number
 	review_created_at: string
+	product_id: number
 }
 
 const Message: FC<MessageProps> = ({
@@ -13,6 +15,7 @@ const Message: FC<MessageProps> = ({
 	message,
 	rating,
 	review_created_at,
+	product_id,
 }) => {
 	return (
 		<div className="bg-slate-200 space-y-5 rounded-md p-3 m-3">
@@ -29,9 +32,14 @@ const Message: FC<MessageProps> = ({
 				</div>
 			</div>
 			<div className="">{message}</div>
-			<p className="text-right font-semibold text-green-500">
-				{review_created_at}
-			</p>
+			<div className="flex justify-between text-green-600">
+				<p className="">
+					<Link href={`product/${product_id}`}> &larr; Go to product</Link>
+				</p>
+				<p className="text-right font-semibold">
+					{review_created_at}
+				</p>
+			</div>
 		</div>
 	)
 }
