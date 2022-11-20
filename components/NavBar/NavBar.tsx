@@ -18,8 +18,8 @@ import { useAuthContext } from "context/AuthContextProvider"
 const NavBar = () => {
 	const [categoryDivIsBlock, setCategoryDivIsBlock] = useState(false)
 	const categoryRef = useRef<HTMLDivElement>()
-	const { getUser, role } = useAuthContext()
-	const [user, setUser] = useState<string | null>()
+	const { role, user } = useAuthContext()
+	const [loggedInUser, setLoggedInUser] = useState<string | null>()
 	//toggle category menu
 	const toggleCategory = (): void => {
 		if (categoryRef.current) {
@@ -56,7 +56,7 @@ const NavBar = () => {
 		}
 	}
 	useEffect(() => {
-		setUser(getUser())
+		setLoggedInUser(user)
 	}, [])
 
 	return (
@@ -70,10 +70,12 @@ const NavBar = () => {
 					className=""
 				/>
 				<nav className="space-y-20 ml-10 mt-10">
-					<div className="capitalize text-2xl text-yellow-500">
+					<div className="capitalize text-2xl text-yellow-500 relative">
 						<FaUserCircle className="inline mr-2" />
-						{user}
+						{loggedInUser} <span className="text-green-500">&rarr;</span>
+						<span className="text-sm absolute m-2 ">{role}</span>
 					</div>
+
 					<div className="hover:text-green-500">
 						<Link href="/">
 							<a>
@@ -113,13 +115,15 @@ const NavBar = () => {
 							<p className="hover:text-green-500">Machinery</p>
 						</div>
 					</div> */}
+					{/* TODO: message feature to be added in future */}
+					{/* <FiMail className="inline mr-2 text-2xl" /> */}
 					<div className="hover:text-green-500">
-						{/* TODO: message feature to be added in future */}
-						{/* <FiMail className="inline mr-2 text-2xl" /> */}
-						<button>
-							<AiOutlineFilePdf className="inline mr-2 text-2xl" />
-							System report
-						</button>
+						<Link href="/system-report">
+							<a>
+								<AiOutlineFilePdf className="inline mr-2 text-2xl" />
+								System report
+							</a>
+						</Link>
 					</div>
 					<div className="hover:text-green-500">
 						<Link href="/reviews">
