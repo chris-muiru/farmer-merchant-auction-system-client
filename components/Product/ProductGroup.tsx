@@ -14,12 +14,12 @@ interface productData {
 	product_product_file_data: { product_file_image: string }
 }
 const ProductGroup = () => {
-	const { getAuthToken } = useAuthContext()
+	const { getAuthToken, role, user } = useAuthContext()
 	const [products, setProducts] = useState((): productData[] | null => {
 		return null
 	})
 	const productUrl = `${LOCALHOST}/products/`
-	const fetchProducts = async () => {
+	const fetchAllProducts = async () => {
 		let response = await fetch(productUrl, {
 			method: "GET",
 			headers: {
@@ -30,9 +30,25 @@ const ProductGroup = () => {
 		let dataJson = await response.json()
 		setProducts(dataJson)
 	}
+	const fetchFarmerSpecificProducts = async () => {
+		const productUrl = `${LOCALHOST}/products/farmer/`
+		const response = await fetch(productUrl, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${getAuthToken()}`,
+			},
+		})
+		const data = await response.json()
+		setProducts(data)
+	}
 	useEffect(() => {
-		fetchProducts()
-	}, [])
+		if (role == "farmer") {
+			fetchFarmerSpecificProducts()
+		} else if (role == "merchant") {
+			fetchAllProducts()
+		}
+	}, [role])
 	return (
 		<>
 			{products &&
