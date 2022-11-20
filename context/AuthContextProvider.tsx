@@ -8,7 +8,7 @@ import { LOCALHOST } from "components/Urls"
 import { useRouter } from "next/router"
 
 interface contextInterface {
-	getUser: () => string | null
+	user: string | undefined
 	logOut: () => void
 	role: string | undefined
 	login: (email: string, password: string) => Promise<void>
@@ -111,11 +111,6 @@ const AuthContextProvider: FC<ProviderProps> = ({ children }) => {
 		}
 		return authTokens.access
 	}
-	const getUser = () => {
-		// TODO: hmmmm...rdo we need a function
-		return user && (user.name as string)
-	}
-	console.log(userRole)
 	const fetchUserRole = async () => {
 		const roleUrl = `${LOCALHOST}/users/role`
 		const response = await fetch(roleUrl, {
@@ -130,7 +125,7 @@ const AuthContextProvider: FC<ProviderProps> = ({ children }) => {
 		setUserRole(data["role"])
 	}
 	const context = {
-		getUser: getUser,
+		user: user?.name,
 		logOut: logOut,
 		login: login,
 		role: userRole,
