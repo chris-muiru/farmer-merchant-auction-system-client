@@ -1,16 +1,21 @@
+import OrderStatusModal from "components/Order/OrderStatusModal"
 import { LOCALHOST } from "components/Urls"
 import { useAuthContext } from "context/AuthContextProvider"
 import Link from "next/link"
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { AiOutlineExclamationCircle } from "react-icons/ai"
+import { BsPencilSquare } from "react-icons/bs"
 import { MdOutlinePending } from "react-icons/md"
 import { TiTick } from "react-icons/ti"
-const orderUrl = `${LOCALHOST}/orders/`
-
+import SwalStatus from "utils/swalStatus"
 const Order = () => {
-	const { getAuthToken } = useAuthContext()
+	const { getAuthToken, role } = useAuthContext()
 	const [orders, setOrders]: any = useState()
-	const fetchOrders = async () => {
+	const [selectionValue, setSelectionValue] = useState<string>()
+	const [orderId, setOrderId] = useState<number>()
+	const modalRef = useRef<HTMLDivElement>()
+	const fetchMerchantSentOrders = async () => {
+		const orderUrl = `${LOCALHOST}/orders/merchant/`
 		let response = await fetch(orderUrl, {
 			method: "GET",
 			headers: {
@@ -20,6 +25,50 @@ const Order = () => {
 		})
 		let dataJson = await response.json()
 		setOrders(dataJson)
+	}
+	const fetchReceivedFarmerOrders = async () => {
+		const orderUrl = `${LOCALHOST}/orders/farmer/`
+		let response = await fetch(orderUrl, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${getAuthToken()}`,
+			},
+		})
+		let dataJson = await response.json()
+		setOrders(dataJson)
+	}
+	const toggleModal = () => {
+		if (modalRef.current) {
+			if (modalRef.current.style.display == "block") {
+				modalRef.current.style.display = "none"
+			} else {
+				modalRef.current.style.display = "block"
+				console.log("ok")
+			}
+		}
+	}
+	const getSelectionValue = (event: React.ChangeEvent<HTMLSelectElement>) => {
+		const status = event.target.value
+		setSelectionValue(status)
+	}
+	const getOrderId = (orderId: number) => {
+		toggleModal()
+		setOrderId(orderId)
+	}
+	const postSelectionValue = async () => {
+		toggleModal()
+		const orderUpdateUrl = `${LOCALHOST}/orders/${orderId}/farmer/update`
+		const response = await fetch(orderUpdateUrl, {
+			method: "PUT",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${getAuthToken()}`,
+			},
+			body: JSON.stringify({ status: selectionValue }),
+		})
+		const status = response.status
+		SwalStatus(status, "Order updated successfully")
 	}
 	const resolveStatus = (status: string): JSX.Element => {
 		if (status == "declined") {
@@ -47,16 +96,52 @@ const Order = () => {
 		return <></>
 	}
 	useEffect(() => {
-		fetchOrders()
-	}, [])
+		if (role == "merchant") {
+			fetchMerchantSentOrders()
+		} else if (role == "farmer") {
+			fetchReceivedFarmerOrders()
+		}
+	}, [role])
 	return (
-		<div className="w-[96%] m-auto  p-5 rounded-sm border min-h-screen">
-			<table className="w-full bg-white">
+		<div className="w-[96%] m-auto  p-5 rounded-sm border min-h-screen relative">
+			<div
+				ref={modalRef}
+				className="z-30 hidden w-full h-full fixed bg-modal backdrop-blur-sm"
+			>
+				<div className=" w-[1000px] h-[500px] mx-56 rounded-sm bg-white p-10">
+					<select
+						name="status"
+						onChange={getSelectionValue}
+						className="h-16 form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 
+                bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out
+      m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none font-mono"
+						aria-label="Default select example"
+					>
+						<option selected>Status</option>
+						<option value="success">Appove</option>
+						<option value="declined">Reject</option>
+					</select>
+					<button
+						className="bg-green-400 w-full p-3 text-white"
+						onClick={postSelectionValue}
+					>
+						Change
+					</button>
+				</div>
+			</div>
+			<table className="w-full bg-white z-10">
 				<thead className="border">
 					<tr>
+						{role == "farmer" && (
+							<th>
+								Change <br />
+								order status
+							</th>
+						)}
+
 						<th>Ref</th>
 						<th>Created</th>
-						<th>Farmer</th>
+						<th>Merchant</th>
 						<th>Phone</th>
 						<th>Product</th>
 						<th>Price</th>
@@ -98,7 +183,20 @@ const Order = () => {
 										className=""
 										key={order_id}
 									>
-										<td className="">{order_id}</td>
+										{role == "farmer" && (
+											<td
+												onClick={() => {
+													getOrderId(order_id)
+												}}
+											>
+												<BsPencilSquare className="text-sm inline hover:text-green-700 text-green-500" />
+											</td>
+										)}
+										<Link href={`products/${order_id}`}>
+											<a>
+												<td className="underline">{order_id}</td>
+											</a>
+										</Link>
 										<td>{order_creation_date}</td>
 										<td>{order_merchant_name}</td>
 										<td>{order_merchant_phone}</td>
