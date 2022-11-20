@@ -13,7 +13,7 @@ import Link from "next/link"
 import { BsPencilSquare } from "react-icons/bs"
 import SwalStatus from "utils/swalStatus"
 const ProductDetail: FC<ProductProps> = () => {
-	const { getAuthToken, role } = useAuthContext()
+	const { getAuthToken, role, user } = useAuthContext()
 	const router = useRouter()
 	const { id } = router.query
 	const productUrl = `${LOCALHOST}/products/${id}`
@@ -43,20 +43,7 @@ const ProductDetail: FC<ProductProps> = () => {
 		let status = response.status
 		SwalStatus(status, "product deleted successfully")
 	}
-	const displayProductManiputationIcons = () => {
-		if (role == "farmer") {
-			return (
-				<>
-					<Link href={`/product/${id}/update`}>
-						<BsPencilSquare className="text-2xl inline hover:text-green-700" />
-					</Link>
-					<button onClick={deleteProductById}>
-						<MdDelete className="text-2xl inline" />
-					</button>
-				</>
-			)
-		}
-	}
+
 	const displayRatingComponent = (product_id: number, rating: number) => {
 		if (role == "merchant") {
 			return (
@@ -116,7 +103,17 @@ const ProductDetail: FC<ProductProps> = () => {
 									<div className="flex flex-row h-20 justify-center mt-6 text-green-500">
 										<h2 className="text-2xl">{product_name}</h2>
 										<div className="absolute right-0 top-[27px] space-x-4">
-											{/* {displayProductManiputationIcons()} */}
+											{product_farmer_name == user &&
+												role == "farmer" && (
+													<>
+														<Link href={`/product/${id}/update`}>
+															<BsPencilSquare className="text-2xl inline hover:text-green-700" />
+														</Link>
+														<button onClick={deleteProductById}>
+															<MdDelete className="text-2xl inline" />
+														</button>
+													</>
+												)}
 										</div>
 									</div>
 
@@ -138,19 +135,45 @@ const ProductDetail: FC<ProductProps> = () => {
 										<div className=" m-2 leading-loose text-justify">
 											{product_description}
 										</div>
-										<h2 className="text-green-500 text-2xl text-center m-3">
-											Review
-										</h2>
-
-										{displayRatingComponent(product_id, rating)}
+										{role == "merchant" && (
+											<h2 className="text-green-500 text-2xl text-center m-3">
+												Review
+											</h2>
+										)}
+										{role == "merchant" && (
+											<div>
+												<div className="w-3/4 m-auto  text-4xl mb-5 gap-4 flex justify-center">
+													{/* @ts-ignore */}
+													<Rating
+														className="gap-4"
+														emptySymbol={
+															<AiFillStar className="inline" />
+														}
+														fullSymbol={
+															<AiFillStar className="inline text-yellow-300" />
+														}
+														initialRating={rating}
+														onClick={(selectedRating) => {
+															setRating(selectedRating)
+														}}
+													/>
+												</div>
+												<SendReview
+													rating={rating}
+													review_product_id={product_id}
+												/>
+											</div>
+										)}
 									</div>
 								</div>
-								<BidSection
-									product_price={product_price}
-									farmer_name={product_farmer_name}
-									product_id={product_id}
-									product_farmer_phone={product_farmer_phone}
-								/>
+								{role == "merchant" && (
+									<BidSection
+										product_price={product_price}
+										product_id={product_id}
+										farmer_name={product_farmer_name}
+										product_farmer_phone={product_farmer_phone}
+									/>
+								)}
 							</>
 						)
 					}
