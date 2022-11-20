@@ -63,8 +63,8 @@ const SignIn: NextPageWithLayout = () => {
 									</a>
 								</Link>
 							</label>
-							<Link href="">
-								<a className="underline"> forgot password</a>
+							<Link href="/auth/signup">
+								<a className="underline text-blue-500">Sign up</a>
 							</Link>
 						</div>
 					</div>
