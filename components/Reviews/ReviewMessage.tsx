@@ -27,7 +27,7 @@ const Message: FC<MessageProps> = ({
 						fullSymbol={<AiFillStar className="inline text-yellow-400" />}
 						emptySymbol={<AiFillStar className="inline" />}
 						initialRating={rating}
-						quiet={true}
+						readonly={true}
 					/>
 				</div>
 			</div>
@@ -36,9 +36,7 @@ const Message: FC<MessageProps> = ({
 				<p className="">
 					<Link href={`product/${product_id}`}> &larr; Go to product</Link>
 				</p>
-				<p className="text-right font-semibold">
-					{review_created_at}
-				</p>
+				<p className="text-right font-semibold">{review_created_at}</p>
 			</div>
 		</div>
 	)
