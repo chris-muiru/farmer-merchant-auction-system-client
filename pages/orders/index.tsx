@@ -162,6 +162,7 @@ const Order = () => {
 								order_creation_date,
 								order_status,
 								order_total_price,
+								order_product_id,
 								order_price,
 								order_quantity,
 								order_id,
@@ -173,6 +174,7 @@ const Order = () => {
 								order_creation_date: string
 								order_status: string
 								order_total_price: number
+								order_product_id: number
 								order_price: number
 								order_quantity: number
 								order_id: number
@@ -192,7 +194,7 @@ const Order = () => {
 												<BsPencilSquare className="text-sm inline hover:text-green-700 text-green-500" />
 											</td>
 										)}
-										<Link href={`products/${order_id}`}>
+										<Link href={`product/${order_product_id}`}>
 											<a>
 												<td className="underline">{order_id}</td>
 											</a>
