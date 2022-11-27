@@ -14,7 +14,7 @@ interface productData {
 	product_product_file_data: { product_file_image: string }
 }
 const ProductGroup = () => {
-	const { getAuthToken, role, user } = useAuthContext()
+	const { getAuthToken, role} = useAuthContext()
 	const [products, setProducts] = useState((): productData[] | null => {
 		return null
 	})
