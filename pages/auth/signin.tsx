@@ -18,13 +18,12 @@ const SignIn: NextPageWithLayout = () => {
 			email: { value: string }
 			password: { value: string }
 		}
-		// console.log("email", email.value)
 		await login(email.value, password.value)
 	}
 
 	return (
 		<Auth>
-			<>
+			<div className="mt-64">
 				<div className="text-center space-y-1">
 					<h2 className="text-3xl">Welcome back</h2>
 					<p className="">please enter your details</p>
@@ -75,7 +74,7 @@ const SignIn: NextPageWithLayout = () => {
 						Sign In
 					</button>
 				</form>
-			</>
+			</div>
 		</Auth>
 	)
 }
