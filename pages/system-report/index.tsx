@@ -107,7 +107,7 @@ const SystemReport = () => {
 		fetchOrders()
 	}, [])
 	return (
-		<div className="bg-green-500 w-[200px] p-4 text-white m-auto">
+		<div className="bg-green-500 w-[200px] p-4 text-white m-auto rounded-sm">
 			<button onClick={createSystemReport}>Print System report</button>
 		</div>
 	)
