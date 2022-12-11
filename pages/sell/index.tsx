@@ -6,11 +6,6 @@ import SwalStatus from "utils/swalStatus"
 const Sell = () => {
 	const { getAuthToken } = useAuthContext()
 	const [image, setImage]: any = useState()
-	// const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-	// 	const target = event.target as HTMLInputElement
-	// 	const file: File = (target.files as FileList)[0]
-	// 	setImage(file)
-	// }
 	console.log(image)
 	const setImageData = (e: ChangeEvent) => {
 		let reader = new FileReader()
@@ -157,7 +152,7 @@ const Sell = () => {
 								name={"productFileImage"}
 								onChange={setImageData}
 								type="file"
-								// multiple={true}
+								accept=".png,.jpeg,.jpg"
 								className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
 							/>
 						</label>
