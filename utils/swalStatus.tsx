@@ -32,11 +32,10 @@ const SwalStatus = (status: number, message: string) => {
 			icon: "error",
 		})
 	}
-
-	setTimeout(() => {
-		// @ts-ignore
-		window.location = "/"
-	}, 3000)
+	// setTimeout(() => {
+	// 	// @ts-ignore
+	// 	window.location = "/"
+	// }, 3000)
 	return <></>
 }
 
