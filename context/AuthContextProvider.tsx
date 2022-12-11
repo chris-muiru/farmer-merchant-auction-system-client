@@ -76,7 +76,7 @@ const AuthContextProvider: FC<ProviderProps> = ({ children }) => {
 	}
 	const logOut = () => {
 		setAuthTokens(null)
-		localStorage.removeItem("authTokens")
+		localStorage.removeItem("auctionSystemToken")
 		router.push("/auth/signin")
 	}
 
@@ -131,7 +131,9 @@ const AuthContextProvider: FC<ProviderProps> = ({ children }) => {
 		role: userRole,
 		getAuthToken: getAuthToken,
 	}
+
 	useEffect(() => {
+		getAuthToken()
 		if (authTokens) {
 			fetchUserRole()
 		}
