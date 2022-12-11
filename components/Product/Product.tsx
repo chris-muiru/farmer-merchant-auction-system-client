@@ -24,6 +24,7 @@ const Product: FC<ProductProps> = ({
 							alt="add fruits"
 							src={product_file_image}
 							layout="fill"
+							objectFit="cover"
 							className="rounded-3xl"
 						/>
 					)}
