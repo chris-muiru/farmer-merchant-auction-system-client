@@ -124,6 +124,13 @@ const AuthContextProvider: FC<ProviderProps> = ({ children }) => {
 		console.log(data)
 		setUserRole(data["role"])
 	}
+
+	
+	// (() => {
+	// 	if(userRole=="farmer"){
+	// 		if
+	// 	}
+	// })()
 	const context = {
 		user: user?.name,
 		logOut: logOut,
