@@ -5,6 +5,7 @@ import NavBar from "../NavBar/NavBar"
 interface Iprop {
 	children: JSX.Element
 }
+// Todo: bring header  to layout
 const Layout: FC<Iprop> = ({ children }) => {
 	return (
 		<div className="flex flex-row w-full bg-slate-100 font-serif">
