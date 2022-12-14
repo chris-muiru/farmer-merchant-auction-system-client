@@ -1,10 +1,15 @@
-import React, { ChangeEvent, useEffect, useState } from "react"
+import React, { ChangeEvent, ReactElement, useEffect, useState } from "react"
 import { LOCALHOST } from "../../components/Urls"
 import { useAuthContext } from "../../context/AuthContextProvider"
 import { event } from "next/dist/build/output/log"
 import SwalStatus from "utils/swalStatus"
+import { useRouter } from "next/router"
+import Layout from "components/Layout/Layout"
 const Sell = () => {
-	const { getAuthToken } = useAuthContext()
+	const router = useRouter()
+
+	const { getAuthToken, role } = useAuthContext()
+
 	const [image, setImage]: any = useState()
 	console.log(image)
 	const setImageData = (e: ChangeEvent) => {
@@ -68,6 +73,11 @@ const Sell = () => {
 		const status = response.status
 		SwalStatus(status, "product successfully created")
 	}
+	useEffect(() => {
+		if (role !== "farmer") {
+			router.push("/auth/signin")
+		}
+	}, [])
 	return (
 		<div className="bg-white w-3/4 m-auto p-2 min-h-screen">
 			<h2 className="text-center text-3xl mt-10">Sell Product </h2>
