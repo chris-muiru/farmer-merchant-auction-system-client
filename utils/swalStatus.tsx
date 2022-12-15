@@ -2,9 +2,7 @@ import { useRouter } from "next/router"
 import React, { FC } from "react"
 import Swal from "sweetalert2"
 import withReactContent from "sweetalert2-react-content"
-// interface swalStatusProps {
-//     status: number
-// }
+
 const SwalStatus = (status: number, message: string) => {
 	const MySwal = withReactContent(Swal)
 	if (status == 200) {
@@ -25,10 +23,16 @@ const SwalStatus = (status: number, message: string) => {
 			html: <i>you dont have permission to do this</i>,
 			icon: "error",
 		})
+	} else if (status == 401) {
+		MySwal.fire({
+			title: <strong>unauthorised</strong>,
+			html: <i>{message}</i>,
+			icon: "info",
+		})
 	} else {
 		MySwal.fire({
-			title: <strong>error!!! </strong>,
-			html: <i>an error occurred</i>,
+			title: <strong>error!!</strong>,
+			html: <i>an error occured</i>,
 			icon: "error",
 		})
 	}
