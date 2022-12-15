@@ -2,9 +2,6 @@ import Image from "next/image"
 import React, { FC, ReactElement, useEffect } from "react"
 import {
 	FiChevronDown,
-	FiChevronRight,
-	FiMail,
-	FiMenu,
 	FiClipboard,
 	FiSmile,
 	FiChevronUp,
@@ -67,7 +64,6 @@ const NavBar = () => {
 					src="/slinger.png"
 					width={250}
 					height={250}
-					className=""
 				/>
 				<nav className="space-y-20 ml-10 mt-10">
 					<div className="capitalize text-2xl text-yellow-500 relative">
@@ -115,7 +111,7 @@ const NavBar = () => {
 							<p className="hover:text-green-500">Machinery</p>
 						</div>
 					</div> */}
-					{/* TODO: message feature to be added in future */}
+					{/* TODO: message feature  in the future */}
 					{/* <FiMail className="inline mr-2 text-2xl" /> */}
 					<div className="hover:text-green-500">
 						<Link href="/system-report">
