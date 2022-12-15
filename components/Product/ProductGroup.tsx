@@ -76,7 +76,6 @@ const ProductGroup = () => {
 					}) => {
 						return (
 							<Product
-								// TODO: figure out how to put key
 								key={product_id}
 								product_id={product_id}
 								product_name={product_name}
