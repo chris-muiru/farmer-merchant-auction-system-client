@@ -6,6 +6,7 @@ import jwtDecode, { JwtPayload } from "jwt-decode"
 import { useEffect } from "react"
 import { LOCALHOST } from "components/Urls"
 import { useRouter } from "next/router"
+import SwalStatus from "utils/swalStatus"
 
 interface contextInterface {
 	user: string | undefined
@@ -25,7 +26,6 @@ const AuthContext: React.Context<contextInterface> = createContext(
 	{} as contextInterface
 )
 
-const BASE = "http://localhost:8000"
 
 export function useAuthContext() {
 	return useContext(AuthContext)
@@ -71,7 +71,7 @@ const AuthContextProvider: FC<ProviderProps> = ({ children }) => {
 			}
 			router.push("/")
 		} else {
-			alert("something went wrong")
+			SwalStatus(401, "password/username don't exist")
 		}
 	}
 	const logOut = () => {
@@ -125,7 +125,6 @@ const AuthContextProvider: FC<ProviderProps> = ({ children }) => {
 		setUserRole(data["role"])
 	}
 
-	
 	// (() => {
 	// 	if(userRole=="farmer"){
 	// 		if
