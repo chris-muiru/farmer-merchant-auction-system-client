@@ -134,7 +134,7 @@ const BidSection: FC<bidSectionProps> = ({
 				<button className="bg-green-500 mt-4 flex justify-center items-center text-white text-md m-auto rounded-md h-[40px] w-full">
 					{product_farmer_phone}
 				</button>
-				{/* TODO: message feature to be added in future */}
+				{/* TODO: messaging feature in future */}
 				{/* <Link href="/messages/1">
 					<button className="border border-green-500 mt-4 flex relative justify-center items-center m-auto rounded-md h-[40px] w-full">
 						<span className="text-xl font-medium">Chat</span>
