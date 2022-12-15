@@ -5,8 +5,6 @@ import Auth from "../../components/Auth/Auth"
 
 import { NextPageWithLayout } from "pages/_app"
 import { ReactElement, useState } from "react"
-import { LOCALHOST } from "components/Urls"
-import jwtDecode from "jwt-decode"
 import { useAuthContext } from "context/AuthContextProvider"
 
 const SignIn: NextPageWithLayout = () => {
