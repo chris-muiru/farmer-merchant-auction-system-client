@@ -11,7 +11,6 @@ const Sell = () => {
 	const { getAuthToken, role } = useAuthContext()
 
 	const [image, setImage]: any = useState()
-	console.log(image)
 	const setImageData = (e: ChangeEvent) => {
 		let reader = new FileReader()
 		const target = e.target as HTMLInputElement
@@ -74,9 +73,10 @@ const Sell = () => {
 		SwalStatus(status, "product successfully created")
 	}
 	useEffect(() => {
-		if (role !== "farmer") {
-			router.push("/auth/signin")
-		}
+		// TODO: How to make page access by required credentials more secure
+		// if (role !== "farmer") {
+		// 	router.push("/auth/signin")
+		// }
 	}, [])
 	return (
 		<div className="bg-white w-3/4 m-auto p-2 min-h-screen">
@@ -125,7 +125,7 @@ const Sell = () => {
 						placeholder="Enter product description"
 						rows={20}
 					/>
-					{/*TODO: use a selection later on for city and town*/}
+					{/*TODO: use selection api for city and town*/}
 					{/*<div className="flex flex-row justify-between space-x-2">*/}
 					{/*	<div className="w-1/2">*/}
 					{/*		<select className="p-6 w-full bg-slate-100 focus:border-none focus:outline-none">*/}
