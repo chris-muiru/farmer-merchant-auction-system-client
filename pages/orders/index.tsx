@@ -8,12 +8,13 @@ import { BsPencilSquare } from "react-icons/bs"
 import { MdOutlinePending } from "react-icons/md"
 import { TiTick } from "react-icons/ti"
 import SwalStatus from "utils/swalStatus"
+import { MdClose } from "react-icons/md"
 const Order = () => {
 	const { getAuthToken, role } = useAuthContext()
 	const [orders, setOrders]: any = useState()
 	const [selectionValue, setSelectionValue] = useState<string>()
 	const [orderId, setOrderId] = useState<number>()
-	const modalRef = useRef<HTMLDivElement>()
+	const modalRef = useRef<HTMLDivElement>(null)
 	const fetchMerchantSentOrders = async () => {
 		const orderUrl = `${LOCALHOST}/orders/merchant/`
 		let response = await fetch(orderUrl, {
@@ -106,27 +107,36 @@ const Order = () => {
 		<div className="w-[96%] m-auto  p-5 rounded-sm border min-h-screen relative">
 			<div
 				ref={modalRef}
-				className="z-30 hidden w-full h-full fixed bg-modal backdrop-blur-sm"
+				className="z-30 hidden w-full h-full absolute bg-modal backdrop-blur-sm"
 			>
-				<div className=" w-[1000px] h-[500px] mx-56 rounded-sm bg-white p-10">
-					<select
-						name="status"
-						onChange={getSelectionValue}
-						className="h-16 form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 
+				<div className=" w-[1000px] h-[500px] mx-56 rounded-sm bg-white p-10 relative">
+					<button
+						className="absolute right-7 top-3 hover:text-green-400"
+						onClick={toggleModal}
+					>
+						<MdClose className="text-4xl" />
+					</button>
+
+					<div className="space-y-10 mt-5">
+						<select
+							name="status"
+							onChange={getSelectionValue}
+							className="h-16 form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 
                 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out
       m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none font-mono"
-						aria-label="Default select example"
-					>
-						<option selected>Status</option>
-						<option value="success">Appove</option>
-						<option value="declined">Reject</option>
-					</select>
-					<button
-						className="bg-green-400 w-full p-3 text-white"
-						onClick={postSelectionValue}
-					>
-						Change
-					</button>
+							aria-label="Default select example"
+						>
+							<option selected>Status</option>
+							<option value="success">Appove</option>
+							<option value="declined">Reject</option>
+						</select>
+						<button
+							className="bg-green-400 w-full p-3 text-white"
+							onClick={postSelectionValue}
+						>
+							Change
+						</button>
+					</div>
 				</div>
 			</div>
 			<table className="w-full bg-white z-10">
