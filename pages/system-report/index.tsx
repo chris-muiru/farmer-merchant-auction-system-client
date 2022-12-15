@@ -3,6 +3,7 @@ import jsPDF from "jspdf"
 import autoTable from "jspdf-autotable"
 import { LOCALHOST } from "components/Urls"
 import { useAuthContext } from "context/AuthContextProvider"
+// TODO: view system report on the page
 const SystemReport = () => {
 	const { getAuthToken } = useAuthContext()
 	const [orders, setOrders] = useState<
