@@ -1,4 +1,3 @@
-import Image from "next/image"
 import React, { FC, ReactElement, useEffect } from "react"
 import {
 	FiChevronDown,
@@ -12,6 +11,7 @@ import Link from "next/link"
 import { useState, useRef } from "react"
 import { AiOutlineFilePdf } from "react-icons/ai"
 import { useAuthContext } from "context/AuthContextProvider"
+import Logo from "components/Logo"
 const NavBar = () => {
 	const [categoryDivIsBlock, setCategoryDivIsBlock] = useState(false)
 	const categoryRef = useRef<HTMLDivElement>()
@@ -57,14 +57,11 @@ const NavBar = () => {
 	}, [])
 
 	return (
-		<div className=" bg-black w-[400px]  text-white min-h-screen sticky">
-			<div className="sticky top-0">
-				<Image
-					alt="add slinger photo"
-					src="/slinger.png"
-					width={250}
-					height={250}
-				/>
+		<div className="bg-black w-[400px]  text-white min-h-screen sticky">
+			<div className="sticky top-0 p-4">
+				<div className="mt-3">
+					<Logo />
+				</div>
 				<nav className="space-y-20 ml-10 mt-10">
 					<div className="capitalize text-2xl text-yellow-500 relative">
 						<FaUserCircle className="inline mr-2" />
