@@ -8,7 +8,7 @@ interface Iprop {
 // Todo: bring header  to layout
 const Layout: FC<Iprop> = ({ children }) => {
 	return (
-		<div className="flex flex-row w-full bg-slate-100 font-serif">
+		<div className="flex flex-row w-full bg-slate-200 font-serif">
 			<>
 				<NavBar />
 				<div className="w-full">{children}</div>
