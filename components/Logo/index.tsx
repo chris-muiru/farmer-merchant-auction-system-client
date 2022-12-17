@@ -4,7 +4,7 @@ const Logo = () => {
 	return (
 		<Image
 			alt="add slinger photo"
-			src="/logo-with-name.svg"
+			src="/slinger.png"
 			width={250}
 			height={250}
 		/>
